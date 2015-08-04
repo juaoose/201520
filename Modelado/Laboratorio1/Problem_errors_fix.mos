@@ -1,0 +1,78 @@
+!************************************************************************************************
+! Problema: 
+!
+! Una persona tiene la posibilidad de rescatar 8 objetos de diferente valor y peso. La 
+! solución consiste en que la persona tome los objetos de mayor valor cuyo peso total 
+! no supere un determinado peso máximo PMAX.
+ 
+! Tener en cuenta los siguientes parámetros:
+
+! Número de objetos: 8
+! PMAX=102
+! Peso de cada objeto:   2,  20, 20, 30, 40, 30, 60 y 10 respectivamente.
+! Valor de cada objeto: 15, 100, 90, 60, 40, 15, 10 y 1 respectivamente.
+!***********************************************************************************************
+
+model ProblemaRescate
+ uses "mmxprs"
+
+ 
+ forward function getProblemStatus(status: integer): string
+
+!DECLARATIONS AND PARAMETERS-------------------------------------------------------------------------------
+
+ declarations
+ 	!constants
+ 	NUM_OBJ=8 !número de objetos
+ 	PMAX=102  !peso máximo
+ 	
+ 	!parameters
+ 	OBJ=1..NUM_OBJ !rango de objetos
+ 	
+ 	valor: 	array(OBJ)of real 
+ 	peso: 	array(OBJ) of real
+ 	tomar: 	array(OBJ)of mpvar !vale '1' si la persona lo toma. Vale '0' si la persona no lo toma.     
+ end-declarations
+ 
+ !peso   p1 p2  p3  p4  p5  p6  p7  p8
+ peso:: [2, 20, 20, 30, 40, 30, 60, 10]
+
+ !valor   v1  v2  v3 v4 v5  v6 v7  v8
+ valor:: [15, 100, 90, 60, 40, 15, 10,1]
+ 
+ 
+  !FUNCIÓN OBJETIVO Y RESTRICCIONES-------------------------------------------------------------------------
+  !función objetivo
+  ValorTotal:= sum(i in OBJ) (valor(i)*tomar(i))
+ 
+  !Restricciones
+   sum(i in OBJ) (peso(i)*tomar(i))<= PMAX
+   
+   forall(i in OBJ) tomar(i) is_binary
+  
+ maximize(ValorTotal) !el valor total de sum peso*valor se maximiza, no se minimiza
+  
+ !RESULTADOS------------------------------------------------------------------------------------------------
+  
+  !Impresión del reporte
+  writeln("Solución del Problema")
+  writeln("Status    : ", getProblemStatus(getprobstat))
+  writeln("Valor total: ", getobjval)
+     
+  forall(i in OBJ| getsol(tomar(i))= 1)
+  	writeln("La persona toma el objeto ",i," de valor ", getsol(valor(i))," y peso ",getsol(peso(i)))
+   
+    
+function getProblemStatus(status: integer):string
+   case status of
+	    XPRS_OPT: returned := "Solved to optimality."
+	    XPRS_UNF: returned := "Unfinished"
+	    XPRS_INF: returned := "Infeasible"
+	    XPRS_UNB: returned := "Unbounded"
+    else returned:= "Unknown Status"
+   end-case
+end-function
+  
+end-model
+
+model ModelName
