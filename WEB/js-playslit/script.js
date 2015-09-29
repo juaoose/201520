@@ -77,6 +77,16 @@ function newPlaylist(){
 	}
 }
 
+//TODO html parts are not yet there
+/**
+ * Removes a playlist
+ * @return {[type]} [description]
+ */
+function removePlaylist(plNumber){
+	playlists.splice(plNumber,1);
+
+}
+
 /**
  * THis func removes a song from a playlist
  * @param  {[type]}
