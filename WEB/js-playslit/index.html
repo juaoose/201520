@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Playslist JS</title>
     <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://api.myjson.com/bins/4eiui; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
     <!-- Loading Bootstrap -->
     <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
     <!-- Loading Flat UI -->
@@ -18,7 +18,7 @@
     <!-- my logic -->
     <script src="script.js"></script>
   </head>
-  <body >
+  <body onload="update(), update2(), updatePl()">
     <!-- NAVBAR -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">

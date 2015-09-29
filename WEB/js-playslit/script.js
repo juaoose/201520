@@ -8,19 +8,7 @@ var playlists = [
 ];
 
 
-var songs = ( function (){
-	var songs = null;
-	$.ajax({
-		'async' : false,
-		'global' : false,
-		'url' : "https://api.myjson.com/bins/4eiui",
-		'dataType' : "json",
-		'success' : function(data){
-			songs = data;
-		}	
-	});
-	return songs;
-})
+var songs;
 
 var songsv = [
     { name: "Sometime (feat. Brasstracks)", artist: "Dallas Cotton", duration: "2:46" },
@@ -211,7 +199,8 @@ function updatePl(){
  * @return {[type]}
  */
 function update(){
-	console.log(songs[0].name);
+
+
 		song_name = document.getElementById("navbarInput-01").value;
 		var songTable = document.getElementById( "songTable" );
 		//start table
@@ -324,18 +313,17 @@ $(document).on("click touchend", "#removeBtn", function () {
 			updatePl();
 });
 
-
 /**
- * Onload here cause Chrome likes being an ahole
- * @param  {[type]} ) {             } [description]
- * @return {[type]}   [description]
+ * Download songs
+ * @param  {[type]} el){return el;});}     [description]
+ * @return {[type]}             [description]
  */
-$( document ).ready(function() {
-  // Handler for .ready() called.
-  // onload="update(), updatePl(),update2()"
-  update();
-  updatePl();
-  update2();
+$.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json", function(json){
+	songs = $.map(json, function(el){return el;});
 });
+
+
+
+
 
 
