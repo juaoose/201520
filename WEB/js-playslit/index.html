@@ -4,21 +4,21 @@
     <meta charset="utf-8">
     <title>Playslist JS</title>
     <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src ">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://api.myjson.com/bins/4eiui; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
     <!-- Loading Bootstrap -->
     <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
     <!-- Loading Flat UI -->
     <link href="dist/css/flat-ui.css" rel="stylesheet">
     <link href="docs/assets/css/demo.css" rel="stylesheet">
     <!--jQuery -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="dist/jquery-1.7.1.min.js"></script>
     <!-- Sweetalert-->
     <script src="dist/sweetalert.min.js"></script> 
     <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
     <!-- my logic -->
     <script src="script.js"></script>
   </head>
-  <body onload="update(), updatePl(),update2()">
+  <body >
     <!-- NAVBAR -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">

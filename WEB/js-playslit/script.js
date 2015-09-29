@@ -13,7 +13,7 @@ var songs = ( function (){
 	$.ajax({
 		'async' : false,
 		'global' : false,
-		'url' : ,
+		'url' : "https://api.myjson.com/bins/4eiui",
 		'dataType' : "json",
 		'success' : function(data){
 			songs = data;
@@ -211,6 +211,7 @@ function updatePl(){
  * @return {[type]}
  */
 function update(){
+	console.log(songs[0].name);
 		song_name = document.getElementById("navbarInput-01").value;
 		var songTable = document.getElementById( "songTable" );
 		//start table
@@ -321,6 +322,20 @@ $(document).on("click touchend", "#removeBtn", function () {
 			var plnumba = $(this).attr('pl');
 			rmvSong(songname, plnumba);
 			updatePl();
+});
+
+
+/**
+ * Onload here cause Chrome likes being an ahole
+ * @param  {[type]} ) {             } [description]
+ * @return {[type]}   [description]
+ */
+$( document ).ready(function() {
+  // Handler for .ready() called.
+  // onload="update(), updatePl(),update2()"
+  update();
+  updatePl();
+  update2();
 });
 
 
