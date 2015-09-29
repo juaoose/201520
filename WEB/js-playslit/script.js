@@ -7,7 +7,22 @@ var playlists = [
 	{ name: "juans playlist of victory", description: "dem tunes", songs: [ { name: "My Way (Remix)", artist: "Fetty Wap & Drake", duration: "4:56" }]},
 ];
 
-var songs = [
+
+var songs = ( function (){
+	var songs = null;
+	$.ajax({
+		'async' : false,
+		'global' : false,
+		'url' : ,
+		'dataType' : "json",
+		'success' : function(data){
+			songs = data;
+		}	
+	});
+	return songs;
+})
+
+var songsv = [
     { name: "Sometime (feat. Brasstracks)", artist: "Dallas Cotton", duration: "2:46" },
     { name: "All I See", artist: "JACK LNDN", duration: "5:00" },
     { name: "Moonrise", artist: "Zimmer", duration: "4:02" },
