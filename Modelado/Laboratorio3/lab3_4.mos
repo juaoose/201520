@@ -1,0 +1,37 @@
+model Computers
+uses "mmxprs"; !gain access to the Xpress-Optimizer solver
+
+!sample declarations section
+declarations
+	!constants
+numMeses = 5
+precioEspecializado = 2000
+precioNovato = 1000
+!parameters
+OBJ=1..numMeses
+especializados: array(OBJ) of mpvar
+nuevos: array(OBJ) of mpvar
+dias: array(OBJ) of integer
+end-declarations
+
+dias:: [6000, 7000, 8000, 9500, 11000]
+!Funcion Objetivo
+Costos:= sum (i in OBJ) (precioEspecializado*especializados(i)+precioNovato*nuevos(i))
+
+!Restricciones
+especializados(1) = 50
+forall (i in 1..4) 0.95*especializados(i) + nuevos(i) = especializados(i+1)
+forall (i in OBJ) 160*especializados(i)-50*nuevos(i)  >=  dias(i)
+forall (i in OBJ) nuevos(i) >= 0
+forall (i in OBJ) especializados(i) >= 0
+
+
+
+!Doit
+minimize(Costos)
+
+!Impresión del reporte
+writeln("Solución del Problema")
+writeln("Ganancia maxima:", getobjval)
+
+end-model

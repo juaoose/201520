@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="dist/css/flat-ui.css" rel="stylesheet">
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+
+    <table id="tablaProductos" border="1" class="table table-hover">
+    <tbody>
+      <tr class="tags">
+        <th>#</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Precio Total</th>
+      </tr>
+      <tr class="producto">
+        <td class="numero">1</td>
+        <td class="productName">Pantalon</td>
+        <td class="cantidad">2</td>
+        <td class="precio_unitario">20</td>
+        <td class="precio_total"></td>
+      </tr>
+      <tr class="producto">
+        <td class="numero">2</td>
+        <td class="productName">Camisa</td>
+        <td class="cantidad">5</td>
+        <td class="precio_unitario">15</td>
+        <td class="precio_total"></td>
+      </tr>
+      <tr class="total">
+        <td colspan="4">Total</td>
+        <td class="total_pedido"></td>
+      </tr>
+    </tbody>
+    </table>
+
+    <input type="button" value="Calcular los totales" onclick="updateTotal();" />
+
+  </body>
+
+</html>

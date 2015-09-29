@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito de Compras</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JQuery, Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script src="script.js"></script>
+
+</head>
+<body onload="update()">
+<div class="container">
+    <div class="row">
+
+        <!-- Título -->
+        <div class="col-md-12">
+            <h1>
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+                Carrito de Compras
+            </h1>
+        </div>
+
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <!-- Productos en el carrito de compras -->
+                    <table class="table table-hover" id="productTable">
+
+                        <!-- Titulos de la tabla -->
+                        <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th class="text-center">Precio</th>
+                            <th class="text-center">Total</th>
+                            <th> </th>
+                        </tr>
+                        </thead>
+
+                        <!-- Cuerpo de la tabla -->
+                        <tbody>
+
+                        <!-- Formulario nuevo producto -->
+                        <tr class="new_product">
+                            <td class="col-sm-8 col-md-6">
+                                <input type="text" class="form-control"
+                                       id="nombre_producto" name="nombre_producto"
+                                       placeholder="Producto">
+                            </td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                <input type="text" class="form-control"
+                                       id="cantidad" name="cantidad"
+                                       placeholder="#">
+                            </td>
+                            <td class="col-sm-1 col-md-1">
+                                <input type="text" class="form-control"
+                                       id="precio_unitario" name="precio_unitario"
+                                       placeholder="$">
+                            </td>
+                            <td class="col-sm-1 col-md-1">
+                            </td>
+
+                            <td class="col-sm-1 col-md-1">
+                                <!-- Boton para agregar el producto al carrito -->
+                                <button type="button" class="btn btn-success">
+                                    <i class="glyphicon glyphicon-plus"></i> Agregar
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Ejemplo : Producto 1 -->
+                        <tr class="product">
+                            <td class="col-sm-8 col-md-6">
+                                <h4 class="media-heading producto">Camiseta</h4>
+                            </td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                <strong class="cantidad">3</strong>
+                            </td>
+
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong class="precio_unitario">$4.000</strong>
+                            </td>
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong class="precio_total">$12.000</strong>
+                            </td>
+
+                            <td class="col-sm-1 col-md-1">
+
+                                <!-- Boton de Remover producto del carrito -->
+                                <button type="button" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-remove"></i> Remover
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Ejemplo : Producto 2 -->
+                        <tr class="product">
+                            <td class="col-sm-8 col-md-6">
+                                <h4 class="media-heading producto">Pantalon</h4>
+                            </td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                <strong class="cantidad">5</strong>
+                            </td>
+
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong class="precio_unitario">$8.000</strong>
+                            </td>
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong class="precio_total">$40.000</strong>
+                            </td>
+
+                            <td class="col-sm-1 col-md-1">
+
+                                <!-- Boton de Remover producto del carrito -->
+                                <button type="button" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-remove"></i> Remover
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Total del carrito -->
+                        <tr>
+                            <td colspan="3"></td>
+                            <td><h3>Total</h3></td>
+                            <td class="text-right">
+                                <h3><strong>
+
+                                    <!-- Valor total -->
+                                    <span id="total_carrito">$52.000</span>
+
+                                </strong></h3>
+                            </td>
+                        </tr>
+
+                        <!-- Botones al final de la tabla -->
+                        <tr>
+                            <td colspan="3"></td>
+                            <td>
+                                <button type="button" class="btn btn-default">
+                                    <i class="glyphicon glyphicon-shopping-cart"></i> Seguir Comprando
+                                </button></td>
+                            <td>
+                                <button type="button" class="btn btn-success">
+                                    Pagar <i class="glyphicon glyphicon-play"></i>
+                                </button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

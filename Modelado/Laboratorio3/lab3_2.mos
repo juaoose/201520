@@ -1,0 +1,42 @@
+model Dulces
+uses "mmxprs"; !gain access to the Xpress-Optimizer solver
+
+!sample declarations section
+declarations
+	!constants
+numDulces=2
+AZUCAR=100
+NUEZ=20
+CHOCOLATE=30
+!parameters
+OBJ=1..numDulces
+nuez: array(OBJ) of real	!cantidad de calorias en cada comida
+chocolate: array(OBJ) of real !canditad de chocolate en cada comida
+azucar: array(OBJ) of real	!cantidad de azucar en cada comida
+precio: array(OBJ) of integer !precio de cada objeto
+numero: array(OBJ) of mpvar !numero de objetos que lleva
+end-declarations
+
+nuez:: [0.1, 0.2]
+chocolate:: [0.1, 0]
+azucar:: [0, 0]
+precio:: [20, 25]
+
+!Funcion Objetivo
+Ganancia:= precio(1)*numero(1)+precio(2)*numero(2)
+
+!Restricciones
+numero(1)+numero(2) <= AZUCAR+NUEZ+CHOCOLATE
+nuez(1)*numero(1)+nuez(2)*numero(2) <= NUEZ
+azucar(1)*numero(1)+azucar(2)*numero(2) <= AZUCAR
+chocolate(1)*numero(1)+chocolate(2)*numero(2) <= CHOCOLATE
+
+
+!Doit
+maximize(Ganancia)
+
+!Impresión del reporte
+writeln("Solución del Problema")
+writeln("Ganancia maxima: $ ", getobjval)
+
+end-model

@@ -1,0 +1,44 @@
+model Comida
+uses "mmxprs"; !gain access to the Xpress-Optimizer solver
+
+!sample declarations section
+declarations
+	!constants
+numeroComidas=4
+MINIMO_CALORIAS=500
+MINIMO_CHOCOLATE=6
+MINIMO_AZUCAR=10
+MINIMO_GRASA=8
+!parameters
+OBJ=1..numeroComidas
+calorias: array(OBJ) of integer	!cantidad de calorias en cada comida
+chocolate: array(OBJ) of integer !canditad de chocolate en cada comida
+azucar: array(OBJ) of integer	!cantidad de azucar en cada comida
+grasa: array(OBJ) of integer	!cantidad de grasa de cada comida
+precio: array(OBJ) of integer !precio de cada objeto
+numero: array(OBJ) of mpvar !numero de objetos que lleva
+end-declarations
+
+calorias:: [400, 200, 150, 500]
+chocolate:: [3, 2, 0, 0]
+azucar:: [2, 2, 4, 4]
+grasa:: [2, 4, 1, 5]
+precio:: [50, 20, 30, 80]
+
+!Funcion Objetivo
+Costo:= precio(1)*numero(1)+precio(2)*numero(2)+precio(3)*numero(3)+precio(4)*numero(4)
+
+!Restricciones
+calorias(1)*numero(1)+calorias(2)*numero(2)+calorias(3)*numero(3)+calorias(4)*numero(4) >= MINIMO_CALORIAS !restr calorias
+chocolate(1)*numero(1)+chocolate(2)*numero(2)+chocolate(3)*numero(3)+chocolate(4)*numero(4)>= MINIMO_CHOCOLATE 	!rest chocolate
+azucar(1)*numero(1)+azucar(2)*numero(2)+azucar(3)*numero(3)+azucar(4)*numero(4) >= MINIMO_AZUCAR	!restr azucar
+grasa(1)*numero(1)+grasa(2)*numero(2)+grasa(3)*numero(3)+grasa(4)*numero(4) >= MINIMO_GRASA	!rest grasa
+
+!Doit
+minimize(Costo)
+
+!Impresión del reporte
+writeln("Solución del Problema")
+writeln("Costo minimo: ", getobjval)
+
+end-model

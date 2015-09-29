@@ -1,0 +1,40 @@
+model Comida
+uses "mmxprs"; !gain access to the Xpress-Optimizer solver
+
+!sample declarations section
+declarations
+	!constants
+dias=7
+min_lunes=17
+min_martes=13
+min_miercoles=15
+min_jueves=19
+min_viernes=14
+min_sabado=16
+min_domingo=11
+!parameters
+DAYS=1..dias
+trabajadores: array(DAYS) of mpvar
+end-declarations
+
+!Funcion Objetivo
+Trabajadores:= sum(i in DAYS) (trabajadores(i))
+
+!Restricciones
+trabajadores(1)+ sum(i in 4..7) (trabajadores(i)) >= min_lunes 
+sum(i in 1..2)(trabajadores(i))+sum(i in 5..7)(trabajadores(i)) >= min_martes 
+sum(i in 1..3)(trabajadores(i))+sum(i in 6..7)(trabajadores(i)) >= min_miercoles 
+sum(i in 1..4)(trabajadores(i))+trabajadores(7) >= min_jueves 
+sum(i in 1..5)(trabajadores(i)) >= min_viernes 
+sum(i in 2..6)(trabajadores(i)) >= min_sabado 
+sum(i in 3..7)(trabajadores(i)) >= min_domingo 
+
+forall(i in DAYS) trabajadores(i) is_integer
+!Doit
+minimize(Trabajadores)
+
+!Impresión del reporte
+writeln("Solución del Problema")
+writeln("Minimo tiempo completos: ", getobjval)
+
+end-model
