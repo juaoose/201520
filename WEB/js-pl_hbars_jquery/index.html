@@ -32,14 +32,23 @@
       
       <!-- Cuerpo de la tabla -->
       <tbody>
-      
-      
-      
-      
-      
+        {{#each songs}}
+          <tr>
+          <td class="song_name">{{name}}<\/td>
+          <td class="song_name">{{artist}}<\/td>
+          <td class="song_name">{{duration}}<\/td>
+          <td><div class="btn-group closed">
+            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">Add to<span class="caret"><\/span><\/button>
+          <ul role=\"menu\" class=\"dropdown-menu\">
+            {{#each playlist}}
+              <li><a href="#playlist_mgmt">{{name}}<\/a><\/li><\/ul><\/div><\/td><\/tr>
+        {{/each}}
+        {{/each}}
+      <\/tbody>
     </script>
+    
   </head>
-  <body onload="update(), update2(), updatePl()">
+  <body >
     <!-- NAVBAR -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">

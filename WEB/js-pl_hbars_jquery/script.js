@@ -332,8 +332,20 @@ $.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playsl
 	songs = $.map(json, function(el){return el;});
 });
 
+//Handlebars
+function hbSongTable(){
+	var plantillaCanciones = $("#template-songs").html();
+	var plantilla = Handlebars.compile( plantillaCanciones );
+	var html = plantilla( songs, playlists );
+	$('#songTable').html( html );
+	console.log("fag");
+}
 
-
-
+$(document).ready(function(){
+	alert("WTFF");
+	hbSongTable();
+	updatePl();
+	update();
+});
 
 
