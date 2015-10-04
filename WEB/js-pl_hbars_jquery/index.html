@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Playslist JS</title>
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+    <!-- Loading Bootstrap -->
+    <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <!-- Loading Flat UI -->
+    <link href="dist/css/flat-ui.css" rel="stylesheet">
+    <link href="docs/assets/css/demo.css" rel="stylesheet">
+    <!--jQuery -->
+    <script type="text/javascript" src="dist/jquery-1.7.1.min.js"></script>
+    <!-- Sweetalert-->
+    <script src="dist/sweetalert.min.js"></script> 
+    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+    <!-- my logic -->
+    <script src="script.js"></script>
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <!-- Plantilla para la lista de tareas -->
+    <script id="template-songs" type="text/x-handlebars-template">
+      <thead>
+        <tr>
+          <th>Name<\/th>
+          <th>Artist<\/th>
+          <th>Duration<\/th>
+          <th>Actions <\/th>
+        <\/tr>
+      <\/thead>
+      
+      <!-- Cuerpo de la tabla -->
+      <tbody>
+      
+      
+      
+      
+      
+    </script>
+  </head>
+  <body onload="update(), update2(), updatePl()">
+    <!-- NAVBAR -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+    <a class="navbar-brand active" href="#">Playlist JS</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+    <ul class="nav navbar-nav">
+      <li><a href="#songlist">Songs</a></li>
+      <li><a href="#playlist_mgmt">Playlists</a></li>
+    </ul>
+    <form class="navbar-form navbar-right" action="#" role="search">
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" id="navbarInput-01" type="search" placeholder="Search songs" oninput="update()">
+        </div>
+      </div>
+    </form>
+  </div><!-- /.navbar-collapse -->
+</nav><!-- /navbar -->
+    <div class="container">
+      <h2 id="songlist">Song List</h2>
+        <table  class="table table-hover table-responsive" id="songTable">          
+        </table>
+      <h2 id="playlist_mgmt">Playlist management</h2>  
+        <table class="table" id="newPl">
+        </table>
+        <table  class="table" id="playlistTable">
+        </table>        
+    </div> <!-- /container -->
+    <script src="dist/js/vendor/jquery.min.js"></script>
+    <script src="dist/js/vendor/video.js"></script>
+    <script src="dist/js/flat-ui.min.js"></script>
+    <script src="docs/assets/js/application.js"></script>
+  </body>
+</html>
