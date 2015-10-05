@@ -1,10 +1,3 @@
-       _                          _                
-      | |                        | |               
-      | |_   _  __ _ _ __        | | ___  ___  ___ 
-  _   | | | | |/ _` | '_ \   _   | |/ _ \/ __|/ _ \
- | |__| | |_| | (_| | | | | | |__| | (_) \__ \  __/
-  \____/ \__,_|\__,_|_| |_|  \____/ \___/|___/\___|
-                                                   
                                              
 //-------------------------------------------------------------------------------------------------------------
 // Variables
@@ -39,58 +32,6 @@ var songsv = [
 //-------------------------------------------------------------------------------------------------------------
 // Logic methods
 //-------------------------------------------------------------------------------------------------------------
-
-/**
- * Adds a new playlist
- * @return {[type]}
- */
-function update2(){
-		var newTab = document.getElementById( "newPl" );
-		var htmlLista =          "";
-			//Formulario nueva pl
-		htmlLista += "                        <tbody>";
-		htmlLista += "                        <tr class=\"new_playlist\">";
-		htmlLista += "							<td colspan=\"1\">";
-		htmlLista += "                                <input type=\"text\" class=\"form-control playlist_name\"";
-		htmlLista += "                                       id=\"playlist_name\" name=\"playlist_name\"";
-		htmlLista += "                                       placeholder=\"Playlist name\" required>";
-		htmlLista += "                            <\/td>";
-		htmlLista += "							<td colspan=\"2\">";
-		htmlLista += "                                <input type=\"text\" class=\"form-control desc\"";
-		htmlLista += "                                       id=\"desc\" name=\"desc\"";
-		htmlLista += "                                       placeholder=\"Description\">";
-		htmlLista += "                            <\/td>";
-		//btn
-		htmlLista += "<td class=\"col-sm-1 col-md-1\">";
-		htmlLista += "                                <button onclick=\"newPlaylist()\" type=\"button\" class=\"btn btn-success\">";
-		htmlLista += "                                     Create";
-		htmlLista += "                                <\/button>";
-		htmlLista += "                            <\/td>";
-
-		htmlLista += "                        </tr>";
-
-		newTab.innerHTML = htmlLista;
-}
-
-function newPlaylist(){
-
-   		pl = document.getElementsByClassName('new_playlist')[0];
-   	if(pl.getElementsByClassName('playlist_name')[0].value){
-    	var new_playlist = { name: pl.getElementsByClassName('playlist_name')[0].value, 
-    						 description: pl.getElementsByClassName('desc')[0].value, 
-    						 songs: [] };
-
-    	//Check if not empty
-    	if (new_playlist){
-    	playlists.push( new_playlist );
-		}
-		updatePl();
-		update();
-	}
-	else{
-		sweetAlert("Oops...", "You need to provide a name for this playlist!", "error");
-	}
-}
 
 //TODO html parts are not yet there
 /**
@@ -155,68 +96,6 @@ function checkSong(songn, playlistNumber){
 	}
 	return answer;
 }
-
-/**
- * This lil boy renders playlist table and the infor inside it, oh and the form to add a new playlist
- * @return {[type]}
- */
-function updatePl(){
-
-	var playlistTable = document.getElementById( "playlistTable" );
-		//start table
-		var htmlLista =          "";
-		htmlLista     += "<!-- Titulos de la tabla -->";
-		htmlLista     += "                        <thead>";
-		htmlLista     += "                        <tr>";
-		htmlLista     += "                            <th colspan=\"2\">Playlist Name<\/th>";
-		htmlLista     += "                            <th colspan=\"2\">Description<\/th>";
-		htmlLista     += "                        <\/tr>";
-		htmlLista     += "                        <\/thead>";
-		htmlLista     += "";
-		htmlLista     += "                        <!-- Cuerpo de la tabla -->";
-		htmlLista     += "                        <tbody>";
-
-		for (var i=0; i <playlists.length ; i++){
-			htmlLista += '<tr class=\"active\">';
-			htmlLista += '<td colspan=\"2\" class="pl_name">'+playlists[i].name+'</td>';
-			htmlLista += '<td colspan=\"2\" class="pl_description aid">'+playlists[i].description+'</td>';
-			htmlLista += '</tr>';
-			//Draw songlist inside
-		if(playlists[i].songs.length>0)
-		{
-			htmlLista += '<table class=\"ze_table\">';
-			htmlLista += '<tr>';
-			htmlLista     += "<!-- Titulos de la tabla -->";
-			htmlLista     += "                        <thead>";
-			htmlLista     += "                        <tr>";
-			htmlLista     += "                            <th>Song Name<\/th>";
-			htmlLista     += "                            <th>Artist<\/th>";
-			htmlLista     += "                            <th>Duration<\/th>";
-			htmlLista     += "                            <th>Actions<\/th>";
-			htmlLista     += "                        <\/tr>";
-			htmlLista     += "                        <\/thead>";
-			htmlLista     += "";
-			htmlLista     += "                        <!-- Cuerpo de la tabla -->";
-			htmlLista     += "                        <tbody>";
-
-			for (var j=0; j<playlists[i].songs.length ; j++){
-				htmlLista += '<tr>';
-				htmlLista += '<td class="song_name">'+playlists[i].songs[j].name+'</td>';
-				htmlLista += '<td class="song_artist">'+playlists[i].songs[j].artist+'</td>';
-				htmlLista += '<td class="song">'+playlists[i].songs[j].duration+'</td>';
-				htmlLista += '<td><button id=\"removeBtn\" song=\"'+playlists[i].songs[j].name+'\" pl=\"'+i+'\" class="btn btn-sm btn-error" >Remove</button></td>';
-				htmlLista += '</tr>'
-			}
-		}
-		else{}
-			htmlLista += '</table>';
-			htmlLista += '</tr>';
-		}
-
-	playlistTable.innerHTML = htmlLista;
-
-}
-
 
 /**
  * This method draws the song list including the buttons that provide functionality to add them to a playlist
@@ -314,10 +193,24 @@ function update(){
  * @param  {[type]}
  * @return {[type]}
  */
-$('#navbarInput-01').keypress(function(event) {
+$(document).on("keyup",'#navbarInput-01',function(event) {
     if (event.keyCode == 13) {
         event.preventDefault();
-    }
+	   }
+	else{
+			var searchParam = $("#navbarInput-01").val();
+	console.log(searchParam);
+	if (searchParam){
+
+		var songlist = [];
+		for (var i = 0; i < songs.length ; i ++){
+			if (songs[i].name.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 || songs[i].artist.toLowerCase().indexOf(searchParam.toLowerCase()) > -1){
+				songlist.push(songs[i]);
+			}
+		}
+		hbSongTable(songlist);
+	}
+	}
 });
 
 /**
@@ -329,7 +222,7 @@ $(document).on("click touchend", "#removeBtn", function () {
      		var songname = $(this).attr('song');
 			var plnumba = $(this).attr('pl');
 			rmvSong(songname, plnumba);
-			updatePl();
+			hbPlaylists();
 });
 
 /**
@@ -341,7 +234,7 @@ $(document).on("click", ".dropdown-menu li a", function(){
 			var nombresito_papa = $(this).parent().parent().attr('cancion');
 			var numerito_perro = $(this).attr('numero');
 			addToP(nombresito_papa, numerito_perro ); 
-			updatePl();
+			hbPlaylists();
 });
 
 /**
@@ -359,11 +252,33 @@ $.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playsl
  * @return {[type]}                                                  [description]
  */
 $(document).ready(function(){
-	hbSongTable();
-	hbSongTable();
-	updatePl();
-	//update();
+	hbSongTable(songs);
+	
 });
+
+/**
+ * Listener to create new playlists
+ * @param  {[type]} ){	var nombrePlaylist [description]
+ * @return {[type]}         [description]
+ */
+$(document).on("click", "#btnNewPl", function(){
+	var nombrePlaylist = $('#new_playlist_name').val();
+	var descripcionPlaylist = $('#new_playlist_desc').val();
+
+	if(nombrePlaylist){
+		var new_playlist = { name: nombrePlaylist, 
+    						 description: descripcionPlaylist, 
+    						 songs: [] };
+    	playlists.push( new_playlist );
+    	hbSongTable(songs);
+    	hbPlaylists();
+	}
+	else{
+		sweetAlert("Oops...", "You need to provide a name for this playlist!", "error");
+	}
+
+});
+
 
 //---------------------------------------------------------------------------------------------------------------
 //Handlebars
@@ -373,12 +288,13 @@ $(document).ready(function(){
  * Compiles the template used to shoy the song list.
  * @return {[type]} [description]
  */
-function hbSongTable(){
+function hbSongTable(canciones){
 	var plantillaCanciones = $("#template-songs").html();
 	var plantilla = Handlebars.compile( plantillaCanciones );
-	var html = plantilla( songs);
-	$('#songTable').html( html );	
+	var html = plantilla( canciones);
+	$("#songTable").html( html );	
 	hbDropdown();
+	hbPlaylists();
 }
 
 /**
@@ -390,7 +306,17 @@ function hbDropdown(){
 	var plantillad = Handlebars.compile(plantillaDropdown);
 	var html1 = plantillad(playlists);
 	$('.dropdown-menu').html(html1);
+}
 
+/**
+ * Compiles the template used to show the playlists
+ * @return {[type]} [description]
+ */
+function hbPlaylists(){
+	var plantillaO = $("#template-playlists").html();
+	var plantilla = Handlebars.compile(plantillaO);
+	var html2 = plantilla(playlists);
+	$("#playlistTable").html(String(html2));
 }
 
 //http://axiacore.com/blog/check-if-item-array-handlebars/

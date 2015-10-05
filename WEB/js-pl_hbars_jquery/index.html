@@ -53,6 +53,36 @@
       <li><a href="#playlist_mgmt" numero="{{@index}}">{{name}}</a></li>
       {{/each}}
     </script>
+
+    <script id="template-playlists" type="text/x-handlebars-template">
+      <thead>
+      <tr>
+      <th colspan="2">Playlist Name</th>
+      <th colspan="2">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each this}}
+        <tr class="active">
+        <td colspan="2" class="pl_name">{{name}}</td>
+        <td colspan="2" class="pl_description aid">{{description}}</td>
+        </tr>
+
+        {{#each songs}}
+
+          <tr>
+          <td class="song_name">{{name}}</td>
+          <td class="song_artist">{{artist}}</td>
+          <td class="song">{{duration}}</td>
+          <td><button id="removeBtn" song="{{name}}" pl="{{@../index}}" class="btn btn-sm btn-error">Remove</button></td>
+          </tr>
+
+
+        {{/each}}
+        </tr>
+            {{/each}}
+      </tbody>
+    </script>
     
   </head>
   <body >
@@ -72,7 +102,7 @@
     <form class="navbar-form navbar-right" action="#" role="search">
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" id="navbarInput-01" type="search" placeholder="Search songs" oninput="update()">
+          <input class="form-control" id="navbarInput-01" type="search" placeholder="Search songs">
         </div>
       </div>
     </form>
@@ -84,6 +114,19 @@
         </table>
       <h2 id="playlist_mgmt">Playlist management</h2>  
         <table class="table" id="newPl">
+          <tbody>
+            <tr class="new_playlist">
+              <td colspan="1">
+                <input type="text" class="form-control playlist_name" id="new_playlist_name" name="playlist_name" placeholder="Playlist Name" required>
+                </td>
+              <td colspan="2">
+                <input type="text" class="form-control desc" id="new_playlist_desc" name="desc" placeholder="Description">
+              </td>
+            <td class="col-sm-1 col-md-1">
+              <button id="btnNewPl" type="button" class="btn btn-success">Create</button>
+              </td></tr>
+              </tbody>
+
         </table>
         <table  class="table" id="playlistTable">
         </table>        
