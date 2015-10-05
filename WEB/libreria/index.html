@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tasks.css">
+
+    <!-- JQuery, Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script src="script.js"></script>
+
+</head>
+<body>
+  
+<!-- Espacio para una plantilla -->
+<script id="template" type="text/x-handlebars-template">
+    {{#each this}}
+        <li class="list-group-item"> </li>
+    {{/each}}
+</script>
+  
+<div class="container">
+	<div class="row">
+
+    <!-- lista a la izquierda -->
+    <div class="dual-list list-left col-sm-5 col-md-5">
+
+      <div class="panel panel-default">
+          <div class="panel-body">
+
+            <!-- Lista de libros -->
+            <ul  id="lista_libros" class="list-group">
+                <li class="list-group-item">Rick Riordan, The Lightning Thief </li>
+                <li class="list-group-item">Rick Riordan, The Sea of Monsters</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+                
+          </div> <!-- /panel-body --> 
+      </div> <!-- /panel -->
+    </div>
+
+    <!-- botones -->
+    <div class="list-arrows col-sm-1 col-md-1 text-center">
+      
+        <!-- mover a la izquierda -->
+        <button class="btn btn-default btn-sm move-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+
+        <!-- mover a la derecha -->
+        <button class="btn btn-default btn-sm move-right">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+
+    <!-- lista a la derecha -->
+    <div class="dual-list list-right col-sm-5 col-md-5">
+      
+      <div class="panel panel-default">
+          <div class="panel-body">
+
+            <!-- Lista de libros -->
+            <ul class="list-group">
+                <li class="list-group-item">Rick Riordan, The Lightning Thief </li>
+                <li class="list-group-item">Rick Riordan, The Sea of Monsters</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+                
+          </div> <!-- /panel-body --> 
+      </div> <!-- /panel -->      
+    </div>
+    
+	</div>  
+</div>
+
+</body>
+</html>  

@@ -1,4 +1,14 @@
-//Variables
+       _                          _                
+      | |                        | |               
+      | |_   _  __ _ _ __        | | ___  ___  ___ 
+  _   | | | | |/ _` | '_ \   _   | |/ _ \/ __|/ _ \
+ | |__| | |_| | (_| | | | | | |__| | (_) \__ \  __/
+  \____/ \__,_|\__,_|_| |_|  \____/ \___/|___/\___|
+                                                   
+                                             
+//-------------------------------------------------------------------------------------------------------------
+// Variables
+//-------------------------------------------------------------------------------------------------------------
 
 var playlists = [
 	{ name: "My playlist", description: "Random music", songs: [ { name: "Sometime (feat. Brasstracks)", artist: "Dallas Cotton", duration: "2:46" },
@@ -24,6 +34,11 @@ var songsv = [
     { name: "Demon Host", artist: "Timber Timbre", duration: "3:38" },
     { name: "Luck Of Lucien", artist: "A Tribe Called Quest", duration: "4:33" },
 ];
+
+
+//-------------------------------------------------------------------------------------------------------------
+// Logic methods
+//-------------------------------------------------------------------------------------------------------------
 
 /**
  * Adds a new playlist
@@ -229,7 +244,6 @@ function update(){
 		htmlLista     += "                        <tbody>";
 		//Table body
 	if(song_name){
-		console.log("Searching: "+song_name);
 		for (var i = 0; i < songs.length ; i++){
 			if(songs[i].name.toLowerCase().indexOf(song_name.toLowerCase()) > -1 || songs[i].artist.toLowerCase().indexOf(song_name.toLowerCase()) > -1){
 				htmlLista += '<tr>';
@@ -281,7 +295,6 @@ function update(){
 		$(".dropdown-menu li a").click(function(){
 			var nombresito_papa = $(this).attr('id');
 			var numerito_perro = $(this).attr('name');
-			//console.log(nombresito_papa+numerito_perro); 
 			addToP(nombresito_papa, numerito_perro ); 
 			updatePl();
 		});
@@ -292,6 +305,10 @@ function update(){
 
 }
 
+//---------------------------------------------------------------------------------------------------------------
+// jQuery listeners
+//---------------------------------------------------------------------------------------------------------------
+
 /**
  * Prevents enter button on the search bar
  * @param  {[type]}
@@ -301,14 +318,6 @@ $('#navbarInput-01').keypress(function(event) {
     if (event.keyCode == 13) {
         event.preventDefault();
     }
-});
-/**
- * Table toggle which doesnt work ,k
- * @param  {[type]}
- * @return {[type]}
- */
-$('.master_table').click(function(){
-        $('.ze_table').slideToggle(10);
 });
 
 /**
@@ -324,6 +333,18 @@ $(document).on("click touchend", "#removeBtn", function () {
 });
 
 /**
+ * This function listens to any click on the dropboxes to add a song to a certain playlist
+ * @param  {[type]} ){	console.log("asd");			var nombresito_papa [description]
+ * @return {[type]}                               [description]
+ */
+$(document).on("click", ".dropdown-menu li a", function(){
+			var nombresito_papa = $(this).parent().parent().attr('cancion');
+			var numerito_perro = $(this).attr('numero');
+			addToP(nombresito_papa, numerito_perro ); 
+			updatePl();
+});
+
+/**
  * Download songs
  * @param  {[type]} el){return el;});}     [description]
  * @return {[type]}             [description]
@@ -332,20 +353,45 @@ $.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playsl
 	songs = $.map(json, function(el){return el;});
 });
 
+/**
+ * On ready, dunno why it works like that, probably because of .getJSON()
+ * @param  {[type]} ){	hbSongTable();	hbSongTable();	updatePl();	} [description]
+ * @return {[type]}                                                  [description]
+ */
+$(document).ready(function(){
+	hbSongTable();
+	hbSongTable();
+	updatePl();
+	//update();
+});
+
+//---------------------------------------------------------------------------------------------------------------
 //Handlebars
+//---------------------------------------------------------------------------------------------------------------
+
+/**
+ * Compiles the template used to shoy the song list.
+ * @return {[type]} [description]
+ */
 function hbSongTable(){
 	var plantillaCanciones = $("#template-songs").html();
 	var plantilla = Handlebars.compile( plantillaCanciones );
-	var html = plantilla( songs, playlists );
-	$('#songTable').html( html );
-	console.log("fag");
+	var html = plantilla( songs);
+	$('#songTable').html( html );	
+	hbDropdown();
 }
 
-$(document).ready(function(){
-	alert("WTFF");
-	hbSongTable();
-	updatePl();
-	update();
-});
+/**
+ * Compiles the template used to show the playlists in the dropdowns for each song
+ * @return {[type]} [description]
+ */
+function hbDropdown(){
+	var plantillaDropdown = $("#template-dropdown").html();
+	var plantillad = Handlebars.compile(plantillaDropdown);
+	var html1 = plantillad(playlists);
+	$('.dropdown-menu').html(html1);
 
+}
+
+//http://axiacore.com/blog/check-if-item-array-handlebars/
 

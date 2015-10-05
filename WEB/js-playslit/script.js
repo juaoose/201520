@@ -328,10 +328,10 @@ $(document).on("click touchend", "#removeBtn", function () {
  * @param  {[type]} el){return el;});}     [description]
  * @return {[type]}             [description]
  */
+
 $.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json", function(json){
 	songs = $.map(json, function(el){return el;});
 });
-
 
 
 

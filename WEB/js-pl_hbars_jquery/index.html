@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Playslist JS</title>
     <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval' 'unsafe-inline">
     <!-- Loading Bootstrap -->
     <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
     <!-- Loading Flat UI -->
@@ -18,33 +18,40 @@
     <!-- my logic -->
     <script src="script.js"></script>
     <!-- Handlebars -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <script src="js/handlebars.js"></script>
     <!-- Plantilla para la lista de tareas -->
     <script id="template-songs" type="text/x-handlebars-template">
       <thead>
         <tr>
-          <th>Name<\/th>
-          <th>Artist<\/th>
-          <th>Duration<\/th>
-          <th>Actions <\/th>
-        <\/tr>
-      <\/thead>
+          <th>Name</th>
+          <th>Artist</th>
+          <th>Duration</th>
+          <th>Actions </th>
+        </tr>
+      </thead>
       
       <!-- Cuerpo de la tabla -->
       <tbody>
-        {{#each songs}}
+        {{#each this}}
           <tr>
-          <td class="song_name">{{name}}<\/td>
-          <td class="song_name">{{artist}}<\/td>
-          <td class="song_name">{{duration}}<\/td>
+          <td class="song_name">{{name}}</td>
+          <td class="song_name">{{artist}}</td>
+          <td class="song_name">{{duration}}</td>
           <td><div class="btn-group closed">
-            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">Add to<span class="caret"><\/span><\/button>
-          <ul role=\"menu\" class=\"dropdown-menu\">
-            {{#each playlist}}
-              <li><a href="#playlist_mgmt">{{name}}<\/a><\/li><\/ul><\/div><\/td><\/tr>
+            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">Add to<span class="caret"></span></button>
+          <ul role="menu" class="dropdown-menu" cancion="{{name}}" id="dropdown_list">
+          <!-- here meng -->
+          </ul>
+          </div></td>
+          </tr>
         {{/each}}
-        {{/each}}
-      <\/tbody>
+      </tbody>
+    </script>
+
+    <script id="template-dropdown" type="text/x-handlebars-template">
+      {{#each this}}
+      <li><a href="#playlist_mgmt" numero="{{@index}}">{{name}}</a></li>
+      {{/each}}
     </script>
     
   </head>
