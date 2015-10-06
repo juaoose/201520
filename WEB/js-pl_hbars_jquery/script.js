@@ -125,6 +125,9 @@ $(document).on("keyup",'#navbarInput-01',function(event) {
 		}
 		hbSongTable(songlist);
 	}
+	else{
+		hbSongTable(songs);
+	}
 	}
 });
 
