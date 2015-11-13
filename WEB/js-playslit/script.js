@@ -8,9 +8,9 @@ var playlists = [
 ];
 
 
-var songs;
+var songsv;
 
-var songsv = [
+var songs = [
     { name: "Sometime (feat. Brasstracks)", artist: "Dallas Cotton", duration: "2:46" },
     { name: "All I See", artist: "JACK LNDN", duration: "5:00" },
     { name: "Moonrise", artist: "Zimmer", duration: "4:02" },
@@ -323,15 +323,7 @@ $(document).on("click touchend", "#removeBtn", function () {
 			updatePl();
 });
 
-/**
- * Download songs
- * @param  {[type]} el){return el;});}     [description]
- * @return {[type]}             [description]
- */
 
-$.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json", function(json){
-	songs = $.map(json, function(el){return el;});
-});
 
 
 

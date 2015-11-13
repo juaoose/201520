@@ -19,6 +19,9 @@
     <script src="script.js"></script>
     <!-- Handlebars -->
     <script src="js/handlebars.js"></script>
+    <!-- stars meng -->
+    <script src="js/star-rating.min.js" type="text/javascript"></script>
+    <link href="dist/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
     <!-- Plantilla para la lista de tareas -->
     <script id="template-songs" type="text/x-handlebars-template">
       <thead>
@@ -26,6 +29,7 @@
           <th>Name</th>
           <th>Artist</th>
           <th>Duration</th>
+          <th>Rating</th>
           <th>Actions </th>
         </tr>
       </thead>
@@ -37,6 +41,11 @@
           <td class="song_name">{{name}}</td>
           <td class="song_name">{{artist}}</td>
           <td class="song_name">{{duration}}</td>
+          <td cancion="{{name}}">
+          <button id="downrating" song="{{name}}" cancion="{{name}}" class="btn btn-sm btn-error"><span class="fui-triangle-left-large"></span></button>
+          {{rating}}
+          <button id="uprating" song="{{name}}" cancion="{{name}}" class="btn btn-sm btn-error"><span class="fui-triangle-right-large"></button>
+          </td>
           <td><div class="btn-group closed">
             <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">Add to<span class="caret"></span></button>
           <ul role="menu" class="dropdown-menu" cancion="{{name}}" id="dropdown_list">
@@ -74,6 +83,7 @@
           <td class="song_name">{{name}}</td>
           <td class="song_artist">{{artist}}</td>
           <td class="song">{{duration}}</td>
+          <td class="song">{{rating}}</td>
           <td><button id="removeBtn" song="{{name}}" pl="{{@../index}}" class="btn btn-sm btn-error">Remove</button></td>
           </tr>
 
@@ -103,6 +113,13 @@
       <div class="form-group">
         <div class="input-group">
           <input class="form-control" id="navbarInput-01" type="search" placeholder="Search songs">
+
+          <!-- parcial -->
+            <select id="searchBy">
+              <option value="1">Artist</option>
+              <option value="2">SongName</option>
+            </select>
+          <!-- aeqwe -->
         </div>
       </div>
     </form>

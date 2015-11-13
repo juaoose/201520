@@ -114,23 +114,38 @@ $(document).on("keyup",'#navbarInput-01',function(event) {
 	   }
 	else{
 			var searchParam = $("#navbarInput-01").val();
+			var searchBy = $("#searchBy option:selected").text();
+
 	console.log(searchParam);
 	if (searchParam){
 
-		var songlist = [];
-		for (var i = 0; i < songs.length ; i ++){
-			if (songs[i].name.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 || songs[i].artist.toLowerCase().indexOf(searchParam.toLowerCase()) > -1){
-				songlist.push(songs[i]);
+		if(searchBy == "Artist"){
+
+			var songlist = [];
+			for (var i = 0; i < songs.length ; i ++){
+				if (songs[i].artist.toLowerCase().indexOf(searchParam.toLowerCase()) > -1){
+					songlist.push(songs[i]);
+				}
 			}
+			hbSongTable(songlist);
 		}
-		hbSongTable(songlist);
+		else{
+
+			var songlist = [];
+			for (var i = 0; i < songs.length ; i ++){
+				if (songs[i].name.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 ){
+					songlist.push(songs[i]);
+				}
+			}
+			hbSongTable(songlist);
+		}
 	}
 	else{
 		hbSongTable(songs);
 	}
 	}
 });
-
+ 
 /**
  * Since theyre all called the same i use .on
  * @param  {[type]}
@@ -162,6 +177,10 @@ $(document).on("click", ".dropdown-menu li a", function(){
  */
 $.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playslit/test.json", function(json){
 	songs = $.map(json, function(el){return el;});
+
+	for(var i = 0; i < songs.length ; i++){
+		songs[i].rating = 0;
+	}
 });
 
 /**
@@ -171,7 +190,6 @@ $.getJSON("https://raw.githubusercontent.com/juaoose/201520/master/WEB/js-playsl
  */
 $(document).ready(function(){
 	hbSongTable(songs);
-	
 });
 
 /**
@@ -195,6 +213,30 @@ $(document).on("click", "#btnNewPl", function(){
 		sweetAlert("Oops...", "You need to provide a name for this playlist!", "error");
 	}
 
+});
+
+$(document).on("click touchend", "#uprating", function () {
+	var nombre = $(this).parent().attr('cancion');
+	for(var i=0; i < songs.length ; i++){
+		if(songs[i].name == nombre){
+			if(songs[i].rating < 10){
+			songs[i].rating ++;
+		}
+		}
+	}
+	hbSongTable(songs);
+});
+
+$(document).on("click touchend", "#downrating", function () {
+	var nombre = $(this).parent().attr('cancion');
+	for(var i=0; i < songs.length ; i++){
+		if(songs[i].name == nombre){
+			if(songs[i].rating >  0){
+			songs[i].rating --;
+		}
+		}
+	}
+	hbSongTable(songs);
 });
 
 
