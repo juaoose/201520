@@ -1,0 +1,21 @@
+<div>
+<br>
+	<h1>{{conference.name}}</h2>
+		<h3>Location</h3>
+			<p>{{conference.location}}</p>
+			<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+		<h3>Date</h3>
+			<p>{{conference.date}}</p>
+		<h3>Description</h3>
+			<p>{{conference.description}}</p>
+		<h3>Tags</h3>
+			<p>{{conference.tags}}</p>
+		<h3>Comments</h3>
+		<ul ng-repeat="comment in getCommentsConf()">
+    		<li>{{comment.user}} : {{comment.message}}</li>
+  		</ul>
+  		<input type="text" class="form-control input-hg" ng-model="$parent.comentario" ng-if="isLogged" placeholder="New comment" />
+  		<button class="btn btn-success btn-sm" ng-if="isLogged" ng-click="newComment()">Add comment</button>
+	<br>
+	<button class="btn btn-danger" ng-click="newConf(conference.id)" ng-if="isLogged && user === conference.user">Edit Conference!</button>
+</div>

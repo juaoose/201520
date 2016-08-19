@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Jasmine Spec Runner v2.0.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="../lib/jasmine/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="../lib/jasmine/jasmine.css">
+
+  <!-- Librerías de Jasmine -->
+  <script src="../lib/jasmine/jasmine.js"></script>
+  <script src="../lib/jasmine/jasmine-html.js"></script>
+  <script src="../lib/jasmine/console.js"></script>
+  <script src="../lib/jasmine/boot.js"></script>
+
+    <!--Project scripts -->
+    <script src="../js/angular.js"></script>
+    <script src="../js/angular-route.js"></script>
+      <script data-require="firebase@*" data-semver="2.2.9" src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+    <script data-require="angularfire@*" data-semver="1.1.1" src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.min.js"></script>
+ <script data-require="angular-mocks.js@1.4.6" data-semver="1.4.6" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-mocks.js"></script>
+    <script data-require="google-maps@*" data-semver="1.0.0" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script data-require="lodash.js@*" data-semver="3.10.0" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js"></script>
+    <script src="../js/angular-simple-logger.js"></script>
+    <script src="../js/angular-google-maps.js"></script>
+    <script src="../overallController.js"></script>
+    <script src="../conferencesController.js"></script>
+    <script src="../loginController.js"></script>
+    <script src="../mainServices.js"></script>
+    <script src="../viewConference.js"></script>
+    <script src="../createConfController.js"></script>
+    <script src="../favoriteController.js"></script>
+    <!--test-->
+    <link href="../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../dist/css/flat-ui.css" rel="stylesheet">
+    <link href="../docs/assets/css/demo.css" rel="stylesheet">
+    <script src="../dist/js/flat-ui.min.js"></script>
+
+    <style>
+      .angular-google-map-container { height: 400px; }
+    </style>  
+
+  <!-- Pruebas -->
+  <script type="text/javascript" src="./ConferencesSpec.js"></script>
+
+  <!-- Utilizar el reporte por Consola -->
+  <script type="text/javascript" src="./SpecRunner.js"></script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<br><br>
+<div>
+  
+  Vista 2
+  <hr/>
+
+  <ul ng-repeat="tag in tags">
+    <li>{{tag.tag}}
+	<button ng-click="remove(tag)">Remove</button>
+    </li> 
+  </ul>  
+
+  <input type="text" class="form-control input-lg" placeholder="tagname" ng-model="tagname" /><br/>
+  
+  <button ng-click="create()">create tag</button>
+
+</div>
